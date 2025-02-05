@@ -4,7 +4,7 @@ import { Send } from 'lucide-react';
 
 const PrivacyWrapperApp = () => {
   const [inputText, setInputText] = useState('');
-  const [model, setModel] = useState('gpt-4');
+  const [model, setModel] = useState('meta-llama/Meta-Llama-3.1-8B-Instruct');
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
