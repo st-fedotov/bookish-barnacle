@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import Dict
 from llm_privacy_wrapper import LLMPrivacyWrapper
 from openai import OpenAI
+import os
 
 app = FastAPI()
 
