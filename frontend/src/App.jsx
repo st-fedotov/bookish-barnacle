@@ -14,7 +14,7 @@ const App = () => {
     setError('');
     
     try {
-      const response = await fetch('/api/query', {
+      const response = await fetch('/api/api/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
