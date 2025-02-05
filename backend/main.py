@@ -19,8 +19,9 @@ app.add_middleware(
 
 # Initialize your privacy wrapper with your replacement map
 replacement_map = {
-    "sensitive_word1": "innocent_word1",
-    "sensitive_word2": "innocent_word2",
+     "Hogwarts": "Hogsmith State Secondary School",
+     "Albus Dumbledore": "Merlin",
+     "Ministry of Magic": "London Bureau of Immigration and Statistics"
     # Add more mappings as needed
 }
 
