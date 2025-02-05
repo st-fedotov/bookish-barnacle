@@ -2,13 +2,14 @@ import re
 from openai import OpenAI
 
 class LLMPrivacyWrapper:
-    def init(self, replacement_map: dict):
+    def __init__(self, replacement_map: dict):
         """
         Initializes the wrapper with a mapping of words to their replacements.
         replacement_map: Dictionary where keys are sensitive words and values are their innocent replacements.
         """
         self.replacement_map = replacement_map
         self.reverse_map = {v: k for k, v in replacement_map.items()}  # Reverse for decoding
+    
     def encode(self, text: str) -> str:
         """
         Replaces sensitive words with innocent alternatives.
@@ -20,6 +21,7 @@ class LLMPrivacyWrapper:
             return self.replacement_map.get(word, word)  # Replace if found, else keep the same
         pattern = re.compile(r'\b(' + '|'.join(map(re.escape, self.replacement_map.keys())) + r')\b', re.IGNORECASE)
         return pattern.sub(replace_match, text)
+    
     def decode(self, text: str) -> str:
         """
         Restores original sensitive words in the text.
@@ -31,6 +33,7 @@ class LLMPrivacyWrapper:
             return self.reverse_map.get(word, word)
         pattern = re.compile(r'\b(' + '|'.join(map(re.escape, self.reverse_map.keys())) + r')\b', re.IGNORECASE)
         return pattern.sub(replace_match, text)
+    
     def answer_with_llm(self, text: str, client, model: str) -> str:
         """
         Encodes text, sends it to the LLM, and then decodes the response.
