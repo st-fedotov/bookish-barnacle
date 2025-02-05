@@ -3,7 +3,7 @@ import { Send } from 'lucide-react';
 
 const App = () => {
   const [inputText, setInputText] = useState('');
-  const [model, setModel] = useState('gpt-4');
+  const [model, setModel] = useState('meta-llama/Meta-Llama-3.1-8B-Instruct');
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -69,8 +69,8 @@ const App = () => {
                       onChange={(e) => setModel(e.target.value)}
                       className="w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                     >
-                      <option value="gpt-4">GPT-4</option>
-                      <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                      <option value="meta-llama/Meta-Llama-3.1-8B-Instruct">Llama-3.1-8B-Instruct</option>
+                      <option value="meta-llama/Meta-Llama-3.1-70B-Instruct">Llama-3.1-70B-Instruct</option>
                     </select>
                   </div>
 
