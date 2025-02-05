@@ -39,76 +39,74 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-      <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-          <div className="max-w-md mx-auto">
-            <div className="divide-y divide-gray-200">
-              <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <h1 className="text-2xl font-bold mb-8 text-center">LLM Privacy Wrapper</h1>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Input Text
-                    </label>
-                    <textarea
-                      value={inputText}
-                      onChange={(e) => setInputText(e.target.value)}
-                      className="w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 h-32"
-                      placeholder="Enter your text here..."
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Model
-                    </label>
-                    <select
-                      value={model}
-                      onChange={(e) => setModel(e.target.value)}
-                      className="w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                    >
-                      <option value="meta-llama/Meta-Llama-3.1-8B-Instruct">Llama-3.1-8B-Instruct</option>
-                      <option value="meta-llama/Meta-Llama-3.1-70B-Instruct">Llama-3.1-70B-Instruct</option>
-                    </select>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={loading || !inputText}
-                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                  >
-                    {loading ? (
-                      <span>Processing...</span>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 mr-2" />
-                        <span>Submit</span>
-                      </>
-                    )}
-                  </button>
-
-                  {error && (
-                    <div className="mt-2 text-sm text-red-600">
-                      {error}
-                    </div>
-                  )}
-
-                  {response && (
-                    <div className="mt-6">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Response
-                      </label>
-                      <div className="p-4 bg-gray-50 rounded-md whitespace-pre-wrap border">
-                        {response}
-                      </div>
-                    </div>
-                  )}
-                </form>
-              </div>
+    <div className="min-h-screen bg-gray-100 py-12">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="bg-white shadow-xl rounded-2xl p-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+            LLM Privacy Wrapper
+          </h1>
+          
+          <form onSubmit={handleSubmit} className="space-y-8">
+            <div>
+              <label className="block text-lg font-medium text-gray-700 mb-3">
+                Input Text
+              </label>
+              <textarea
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 h-48 text-base"
+                placeholder="Enter your text here..."
+              />
             </div>
-          </div>
+
+            <div>
+              <label className="block text-lg font-medium text-gray-700 mb-3">
+                Model
+              </label>
+              <select
+                value={model}
+                onChange={(e) => setModel(e.target.value)}
+                className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-base appearance-none bg-white"
+              >
+                <option value="meta-llama/Meta-Llama-3.1-8B-Instruct">Llama-3.1-8B-Instruct</option>
+                <option value="meta-llama/Meta-Llama-3.1-70B-Instruct">Llama-3.1-70B-Instruct</option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading || !inputText}
+              className="w-full flex items-center justify-center px-6 py-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed mt-6"
+            >
+              {loading ? (
+                <span className="text-lg">Processing...</span>
+              ) : (
+                <>
+                  <Send className="w-5 h-5 mr-3" />
+                  <span className="text-lg">Submit</span>
+                </>
+              )}
+            </button>
+
+            {error && (
+              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-base text-red-600">
+                  {error}
+                </p>
+              </div>
+            )}
+
+            {response && (
+              <div className="mt-8">
+                <label className="block text-lg font-medium text-gray-700 mb-3">
+                  Response
+                </label>
+                <div className="p-6 bg-gray-50 rounded-lg border border-gray-200 shadow-inner whitespace-pre-wrap text-base">
+                  {response}
+                </div>
+              </div>
+            )}
+          </form>
         </div>
       </div>
     </div>
