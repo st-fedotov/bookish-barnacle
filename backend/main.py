@@ -26,7 +26,10 @@ replacement_map = {
 privacy_wrapper = LLMPrivacyWrapper(replacement_map)
 
 # Initialize OpenAI client
-client = OpenAI()
+client = OpenAI(
+    base_url="https://api.studio.nebius.ai/v1/",
+    api_key=os.environ.get("NEBIUS_API_KEY"),
+)
 
 class QueryRequest(BaseModel):
     text: str
