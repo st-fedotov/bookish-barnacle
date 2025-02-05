@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict
-import uvicorn
 from llm_privacy_wrapper import LLMPrivacyWrapper
 from openai import OpenAI
 
@@ -11,7 +10,7 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Replace with your frontend URL
+    allow_origins=["http://localhost", "http://localhost:80"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,9 +22,11 @@ replacement_map = {
     "sensitive_word2": "innocent_word2",
     # Add more mappings as needed
 }
-privacy_wrapper = LLMPrivacyWrapper(replacement_map)
 
-# Initialize OpenAI client
+# Create the privacy wrapper instance with the replacement map
+privacy_wrapper = LLMPrivacyWrapper(replacement_map=replacement_map)
+
+# Initialize Nebius client
 client = OpenAI(
     base_url="https://api.studio.nebius.ai/v1/",
     api_key=os.environ.get("NEBIUS_API_KEY"),
@@ -47,5 +48,7 @@ async def query_llm(request: QueryRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# Add a health check endpoint
+@app.get("/api/health")
+async def health_check():
+    return {"status": "healthy"}
