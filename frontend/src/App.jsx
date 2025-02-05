@@ -68,9 +68,9 @@ const PrivacyWrapperApp = () => {
                 onChange={(e) => setModel(e.target.value)}
                 className="w-full p-2 border rounded-md"
               >
-                <option value="gpt-4">GPT-4</option>
-                <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
-                <option value="claude-3">Claude 3</option>
+                <option value="meta-llama/Meta-Llama-3.1-8B-Instruct">Llama-3.1-8B-Instruct</option>
+                <option value="meta-llama/Meta-Llama-3.1-70B-Instruct">Llama-3.1-70B-Instruct</option>
+                <option value="meta-llama/Meta-Llama-3.1-405B-Instruct">Llama-3.1-405B-Instruct</option>
               </select>
             </div>
 
